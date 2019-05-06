@@ -1,0 +1,22 @@
+png luotu osoitteessa https://www.websequencediagrams.com/
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+palvelin-->selain: HTML
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: CSS
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin-->selain: SPA JS
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: JSON-data
+
+
+note over selain:
+tästä eteenpäin SPA-sovellus tekee
+vain POST pyynnön palvelimelle, kun uutta notea lisätään.
+SPA-sovellus renderöi lisätyn noten suoraan
+selaimeen, jolloin kaikkea dataa sekä sivuja ei tarvitse
+ladata aina uudestaan.
+end note;
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+palvelin-->selain: 201 Created ({"message":"note created"})

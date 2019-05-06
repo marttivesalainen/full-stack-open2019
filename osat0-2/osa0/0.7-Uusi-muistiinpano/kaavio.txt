@@ -1,0 +1,4 @@
+png luotu osoitteessa https://www.websequencediagrams.com/
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+palvelin-->selain: 201 Created ({"message":"note created"})

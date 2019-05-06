@@ -1,0 +1,19 @@
+{
+  "persons": [
+    {
+      "name": "Essi Esimerkki",
+      "number": "123456",
+      "id": 5
+    },
+    {
+      "name": "Lällyti lää",
+      "number": "0501234567",
+      "id": 6
+    },
+    {
+      "name": "Lel lel",
+      "number": "1234",
+      "id": 8
+    }
+  ]
+}
