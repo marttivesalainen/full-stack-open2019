@@ -1,0 +1,13 @@
+POST http://localhost:3003/api/blogs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZXJ0eSIsImlkIjoiNWNjMWQ1MGIxOTkyMTIyYzNmYzFmNjJmIiwiaWF0IjoxNTU2MjA3NjUzfQ.JlJClvqoSqvWhU5csmB4NWFf9r0_3o5_lvL4hwN4qiM
+
+{
+  "author": "fsas",
+  "title": "fsaf",
+  "url": "http://localhost",
+  "likes": 7,
+  "user": {
+     "id": "5cc1d1be41e0e027cb03c7ab"
+  }
+}
