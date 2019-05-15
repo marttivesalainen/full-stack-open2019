@@ -84,10 +84,43 @@ blogRouter.put('/:id', async (request, response) => {
 
     return response.status(200).json(blog);
   } catch (error) {
-    console.log(error);
     if (error.name === 'ValidationError')
       return response.status(400).send(error.message);
     else if (error) return response.status(500).send(error);
+  }
+});
+
+blogRouter.post('/:id/comments', async (request, response) => {
+  const { token } = request;
+  const { id } = request.params;
+  const { comment } = request.body;
+
+  if (!comment) {
+    return response.sendStatus(400);
+  }
+
+  const decodedToken = jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    if (err) return null;
+    return decoded;
+  });
+
+  try {
+    if (!token || !decodedToken || !decodedToken.id) {
+      return response.status(401).json({ error: 'token missing or invalid' });
+    }
+
+    const blog = await Blog.findByIdAndUpdate(
+      id,
+      {
+        $push: { comments: comment }
+      },
+      { new: true }
+    );
+
+    response.status(201).json(blog);
+  } catch (exception) {
+    console.log(exception);
+    response.status(400).json({ error: exception.message });
   }
 });
 

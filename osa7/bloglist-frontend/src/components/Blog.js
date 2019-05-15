@@ -1,43 +1,73 @@
-import React, { useState } from 'react';
-const Blog = ({ blog, handleLike, handleDelete, owner }) => {
-  const [visible, setVisible] = useState(false);
+import React from 'react';
+import { connect } from 'react-redux';
+import { createComment, likeBlog, removeBlog } from '../reducers/blogReducer';
 
-  const container = { border: 'solid 1px #000', margin: '2px' };
-  const details = { display: visible ? '' : 'none' };
+import CommentForm from './CommentForm';
 
-  const toggleVisibility = () => {
-    setVisible(!visible);
-  };
+const Blog = props => {
+  if (props.blogs.length === 0 || !props.user) {
+    return <p>Loading</p>;
+  }
+
+  const blog = props.blogs.find(blog => blog.id === props.match.params.id);
+
+  const owner = blog.user.username === props.user.username;
 
   const handleLikeClick = async event => {
     event.preventDefault();
-    await handleLike(blog);
+    props.likeBlog(blog);
   };
 
-  const handleDeleteClick = async event => {
+  const handleDeleteClick = event => {
     event.preventDefault();
     if (
       window.confirm(`Oletko varma, että haluat poistaa blogin ${blog.title}`)
     )
-      handleDelete(blog.id);
+      props.removeBlog(blog.id);
+    props.history.push('/');
+  };
+
+  const handleNewComment = comment => {
+    props.createComment(blog.id, comment);
   };
 
   return (
-    <div className="blog" style={container}>
-      <p className="toggle" onClick={toggleVisibility}>
+    <div className="blog">
+      <h2>
         {blog.title} {blog.author}
-      </p>
-      <div className="details" style={details}>
+      </h2>
+      <div>
         <a href={blog.url}>{blog.url}</a>
         <p>
           {blog.likes} tykkäystä{' '}
           <button onClick={handleLikeClick}>Tykkää</button>
         </p>
         <p>Lisännyt {blog.user.name}</p>
+
         {owner && <button onClick={handleDeleteClick}>Poista</button>}
+
+        <h3>Kommentit</h3>
+
+        <CommentForm handleNewComment={handleNewComment} />
+
+        {blog.comments.map(comment => {
+          return <li key={`${comment}${Math.random() * 100}`}>{comment}</li>;
+        })}
       </div>
     </div>
   );
 };
 
-export default Blog;
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    user: state.user,
+    blogs: state.blogs,
+    notification: state.notification
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { createComment, likeBlog, removeBlog }
+)(Blog);
