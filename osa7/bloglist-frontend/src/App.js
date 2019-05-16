@@ -33,8 +33,6 @@ const App = props => {
 
   return (
     <div>
-      <h1>Blogs</h1>
-
       <div>{props.notification}</div>
 
       {!props.user ? (
