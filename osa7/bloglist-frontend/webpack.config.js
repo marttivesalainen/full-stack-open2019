@@ -15,7 +15,8 @@ module.exports = {
     },
     port: '3000',
     contentBase: PATHS.build,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
   module: {
     rules: [

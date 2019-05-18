@@ -19,11 +19,11 @@ const CommentForm = ({ handleNewComment }) => {
     <form>
       <div>
         comment&nbsp;
-        <input {...comment.field} />
+        <input id="comment" {...comment.field} />
       </div>
 
       <div>
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit" onClick={handleSubmit} data-cy="addComment">
           Lisää
         </button>
       </div>

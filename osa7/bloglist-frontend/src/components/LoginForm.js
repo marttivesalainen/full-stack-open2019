@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useField } from '../hooks';
-
 import FontAwesome from 'react-fontawesome';
+import { useField } from '../hooks';
 
 const Wrapper = styled.div`
   display: block;
@@ -86,7 +85,7 @@ const LoginForm = ({ handleLogin }) => {
         </InputWrapper>
 
         <InputWrapper>
-          <Input placeholder="Salasana" {...password.field} />
+          <Input id="password" placeholder="Salasana" {...password.field} />
           <Symbol>
             <FontAwesome name="key" />
           </Symbol>

@@ -19,7 +19,7 @@ const BlogList = props => {
 
   return (
     <div>
-      <Togglable buttonLabel="Create blog" ref={blogFormRef}>
+      <Togglable buttonLabel="Lisää blogi" ref={blogFormRef}>
         <h2>Create Blog</h2>
         <BlogForm handleNewBlog={handleNewBlog} />
       </Togglable>

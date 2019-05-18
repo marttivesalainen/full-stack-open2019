@@ -26,18 +26,18 @@ const BlogForm = ({ handleNewBlog }) => {
     <form>
       <div>
         Title&nbsp;
-        <input {...title.field} />
+        <input id="title" {...title.field} />
       </div>
       <div>
         Author&nbsp;
-        <input {...author.field} />
+        <input id="author" {...author.field} />
       </div>
       <div>
         Url&nbsp;
-        <input {...url.field} />
+        <input id="url" {...url.field} />
       </div>
       <div>
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit" data-cy="submit" onClick={handleSubmit}>
           Lisää
         </button>
       </div>

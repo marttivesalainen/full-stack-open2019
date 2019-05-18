@@ -17,7 +17,6 @@ export const createBlog = blog => {
     blogService
       .create(blog)
       .then(response => {
-        console.log(response.data);
         dispatch({ type: 'ADD_BLOG', data: response.data });
         dispatch(
           createNotification(
