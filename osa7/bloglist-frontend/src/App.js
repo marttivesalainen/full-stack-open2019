@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Menu from './components/Menu';
 import Blog from './components/Blog';
@@ -12,6 +13,23 @@ import { initializeBlogs } from './reducers/blogReducer';
 import LoginForm from './components/LoginForm';
 
 import { setUser, removeUser } from './reducers/userReducer';
+
+const Wrapper = styled.div`
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex: 100%;
+
+  border-radius: 3px;
+
+  h1,
+  h2,
+  h3,
+  h4 p {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+`;
 
 const App = props => {
   useEffect(() => {
@@ -40,14 +58,13 @@ const App = props => {
       ) : (
         <>
           <Router>
-            <Menu>
-              {props.user.name} kirjautunut sisään{' '}
-              <button onClick={handleLogout}>Kirjaudu ulos</button>
-            </Menu>
+            <Wrapper>
+              <Menu user={props.user.name} handleLogout={handleLogout} />
 
-            <Route exact path="/" component={BlogList} />
-            <Route path="/users" component={Users} />
-            <Route exact path="/blogs/:id" component={Blog} />
+              <Route exact path="/" component={BlogList} />
+              <Route path="/users" component={Users} />
+              <Route exact path="/blogs/:id" component={Blog} />
+            </Wrapper>
           </Router>
         </>
       )}

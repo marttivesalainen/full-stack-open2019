@@ -2,6 +2,8 @@ import React from 'react';
 import { useField } from '../hooks';
 import PropTypes from 'prop-types';
 
+import Button from './common/elements/Button';
+
 const CommentForm = ({ handleNewComment }) => {
   const comment = useField('text');
 
@@ -23,9 +25,9 @@ const CommentForm = ({ handleNewComment }) => {
       </div>
 
       <div>
-        <button type="submit" onClick={handleSubmit} data-cy="addComment">
+        <Button type="submit" onClick={handleSubmit} data-cy="addComment">
           Lisää
-        </button>
+        </Button>
       </div>
     </form>
   );

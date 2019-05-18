@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createComment, likeBlog, removeBlog } from '../reducers/blogReducer';
 
 import CommentForm from './CommentForm';
+import Button from './common/elements/Button';
 
 const Blog = props => {
   if (props.blogs.length === 0 || !props.user) {
@@ -40,11 +41,11 @@ const Blog = props => {
         <a href={blog.url}>{blog.url}</a>
         <p>
           {blog.likes} tykkäystä{' '}
-          <button onClick={handleLikeClick}>Tykkää</button>
+          <Button onClick={handleLikeClick}>Tykkää</Button>
         </p>
         <p>Lisännyt {blog.user.name}</p>
 
-        {owner && <button onClick={handleDeleteClick}>Poista</button>}
+        {owner && <Button onClick={handleDeleteClick}>Poista</Button>}
 
         <h3>Kommentit</h3>
 
